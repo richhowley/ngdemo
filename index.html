@@ -3,44 +3,69 @@
 <html ng-app="app">
 <head>
     <title>AngularJs Demo</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">	
     <link rel="stylesheet" href="css/styles.css">	
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.1/font/bootstrap-icons.min.css" integrity="sha512-WYaDo1TDjuW+MPatvDarHSfuhFAflHxD87U9RoB4/CSFh24/jzUHfirvuvwGmJq0U7S9ohBXy4Tfmk2UKkp2gA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
 <body ng-controller="AppController as appCtl" ng-cloak>
 
-	<div ng-show="!appCtl.currentPark">	
+  <h1 class="display-5 m-3">National Parks of New England</h1>
+
+	<div class="container-fluid" ng-show="!appCtl.currentPark">
+  
 		<!-- Drop-down states list -->
-		<label for="state-menu">Select a state</label>
-		<select id="state-menu" ng-model= appCtl.currentState; 
-				ng-change="appCtl.stateSelected()" 
-				ng-options="item for item in appCtl.stateCodes">
-		</select>
+    <div class="d-flex flex-row mb-5">
+      <label class="fw-light col-2 text-center" for="state-menu">Select a state</label>
+      <select class="col-1" class="form-select" id="state-menu" ng-model= appCtl.currentState; 
+          ng-change="appCtl.stateSelected()" 
+          ng-options="item for item in appCtl.stateCodes">
+      </select>
+    </div>
 		
 		<!-- List of parks in state -->
-		<div ng-show="appCtl.currentState">	
-			<div ng-repeat="park in appCtl.parkData">
-				<h5 class="park-name" ng-click="appCtl.currentPark = park">{{park.fullName}}</h5>
-			</div>
-		</div>	
+    <div class="d-flex flex-row m-5">
+      <div col ng-show="appCtl.currentState">	
+        <div class="mb-1" ng-repeat="park in appCtl.parkData">
+          <p class="park-name fw-normal" ng-click="appCtl.currentPark = park">{{park.fullName}}</p>
+        </div>
+      </div>
+    </div>
 		
 	</div>
 
 	<!-- Park info screen -->
-	<div ng-if="appCtl.currentPark">	
-		<!-- back button -->
-		<button ng-click="appCtl.currentPark=null">Back</button>
-		
-		<!-- Park name, description and photo -->
-		<h3>{{appCtl.currentPark.fullName}}</h3>
-		<div>{{appCtl.currentPark.description}}</div>
-		<div class="scaled">
-			<img ng-src="{{appCtl.currentPark.images[0].url}}">
-		</div>
-		<div>
-		{{appCtl.currentPark.images[0].caption}}
-		</div>
+	<div ng-if="appCtl.currentPark">
+    
+    <div class="d-flex flex-row align-items-center">
+      <!-- back button -->
+      <div>
+          <button type="button m-5" class="btn btn-outline-primary" ng-click="appCtl.currentPark=null"><i class="bi bi-arrow-left"></i></button>  
+      </div>
+      
+      <!-- Park name -->
+      <h1 class="display-6 m-3">{{appCtl.currentPark.fullName}}</h1>
+    </div>
+    
+    <div class="d-flex flex-col align-items-center justify-content-center"">
+     
+      <!--description -->    
+      <div class="ps-5 pe-5 fw-normal">{{appCtl.currentPark.description}}</div>
+      
+    </div>
+
+  	<!-- photo -->
+   <div class="d-flex flex-col align-items-center  justify-content-center">
+     <img class="scaled" ng-src ="{{appCtl.currentPark.images[0].url}}">
+   </div>   
+  
+   <!--caption -->    
+   <div class="d-flex flex-col align-items-center justify-content-center">
+    <div class="ps-5 pe-5 pb-3 fw-normal">{{appCtl.currentPark.images[0].caption}}</div>
+   </div> 
+  
+  
 	</div>	
 
 					
@@ -50,7 +75,7 @@
 	crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/app.js"></script> 
 
 </script>   
